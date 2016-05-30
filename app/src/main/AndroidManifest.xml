@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.tan.service.demo"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <service
+            android:name=".service.GrayService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":gray" >
+            <intent-filter>
+                <action android:name="com.tan.gray.service" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".service.GrayService$GrayInnerService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":gray" />
+
+        <service
+            android:name=".service.BackgroundService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":bg" />
+        <service
+            android:name=".service.WhiteService"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":white" />
+        <receiver
+            android:name=".receiver.WakeReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <!--开机广播-->
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!--关闭或打开飞行模式时的广播-->
+                <action android:name="android.intent.action.AIRPLANE_MODE" />
+                <!--当屏幕锁屏时-->
+                <action android:name="android.intent.action.CLOSE_SYSTEM_DIALOGS"/>
+                <!--系统时间改变时-->
+                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <!--屏幕关闭时-->
+                <action android:name="android.intent.action.SCREEN_OFF"/>
+                <!--屏幕开启时-->
+                <action android:name="android.intent.action.SCREEN_ON"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
