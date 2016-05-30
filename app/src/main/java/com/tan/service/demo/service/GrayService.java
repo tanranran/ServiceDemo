@@ -8,8 +8,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 
+import com.tan.service.demo.AidlCallback;
 import com.tan.service.demo.IRemoteService;
 import com.tan.service.demo.receiver.WakeReceiver;
 
@@ -82,6 +84,17 @@ public class  GrayService extends Service {
         public int getPid(){
             return 999999999;
         }
+
+        @Override
+        public void registerCallback(AidlCallback cb) throws RemoteException {
+
+        }
+
+        @Override
+        public void unregisterCallback(AidlCallback cb) throws RemoteException {
+
+        }
+
         GrayService getGrayService() {
             // 返回Activity所关联的Service对象，这样在Activity里，就可调用Service里的一些公用方法和公用属性
             return GrayService.this;
